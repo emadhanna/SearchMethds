@@ -4,6 +4,8 @@ import java.util.Scanner;
 
 public class LinearSearch {
 	
+	private static int countCharacterPromptCalls = 0;
+	
 	public static void main(String[] args) {
 
 		char ALPHABETLIST[] = {' ', '!', '.', 'a', 'b', 'c', 'd', 'e' , 'f', 'g', 'h', 
@@ -13,6 +15,7 @@ public class LinearSearch {
 		
 		System.out.println("You typed:");
 		printWordCaptured(resultedWord);
+		System.out.println("Number of prompts for checking character: " + countCharacterPromptCalls);
 	}
 
 
@@ -38,6 +41,7 @@ public class LinearSearch {
 	}
 	
 	public static boolean isThisTheLetter(char letterToCheck) {
+		countCharacterPromptCalls++;
 		Scanner scan = new Scanner(System.in);
 		System.out.println("Are you thinking of the letter '" + letterToCheck + "'?");
 		char capteredAnswer = 'n';
@@ -63,5 +67,6 @@ public class LinearSearch {
 		for (Character character : list) {
 			System.out.print(character);
 		}
+		System.out.println("\n");
 	}
 }

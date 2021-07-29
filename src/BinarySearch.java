@@ -3,6 +3,8 @@ import java.util.List;
 import java.util.Scanner;
 
 public class BinarySearch {
+	
+	private static int countCharacterPromptCalls = 0;
 
 	public static void main(String[] args) {
 
@@ -10,6 +12,7 @@ public class BinarySearch {
 		
 		System.out.println("You typed:");
 		printWordCaptured(resultedWord);
+		System.out.println("Number of questions typed is: " + countCharacterPromptCalls);
 	}
 
 
@@ -44,8 +47,12 @@ public class BinarySearch {
 		}
 		
 		answerCaptured = isThisTheLetter(alphabetList[startValue], alphabetList[middleCharacter]);
-		if (answerCaptured) {
-			return checkCharacterRange(alphabetList, startValue, middleCharacter);
+		if (answerCaptured && (startValue == middleCharacter)) {
+			return alphabetList[startValue];
+		}else {
+			if (answerCaptured) {
+				return checkCharacterRange(alphabetList, startValue, middleCharacter);
+			}
 		}
 		
 		return checkCharacterRange(alphabetList, middleCharacter + 1, endValue);
@@ -79,6 +86,8 @@ public class BinarySearch {
 	}
 
 	private static void validateStartAndEndCharacterNotMatched(char startCharcter, char endCharacter) {
+		countCharacterPromptCalls++;
+
 		if (startCharcter != endCharacter) {
 			System.out.println("Is your letter between '" + startCharcter + "' and '" + endCharacter + "'?");
 		}else {
@@ -91,6 +100,7 @@ public class BinarySearch {
 		for (Character character : list) {
 			System.out.print(character);
 		}
+		System.out.println("\n");
 	}
 
 }
